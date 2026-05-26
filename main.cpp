@@ -12,7 +12,7 @@ int main() {
         if (n <= 0) {
             std::cout << "Invalid number! Please try again.\n";
         }
-    } while (n > 0);
+    } while (n <= 0); // Loops while input is valid
 
     // Create an array to hold the student data
     Student studentArray[n]; 
