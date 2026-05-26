@@ -31,7 +31,7 @@ void calculateGrades(Student* students, int n) {
     }
 }
 
-// Output student records and performance status to the console
+// Output student records and performance status to the console 
 void displayStudents(const Student* students, int n) {
     for (int i = 0; i < n; ++i) {
         std::cout << "ID: " << students[i].id << ", Name: " << students[i].name << "\n";
