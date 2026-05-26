@@ -83,22 +83,23 @@ void saveToFile(const Student* students, int n, const std::string& filename) {
 }
 
 // Open the text file, read the stored contents, and print them out
-void loadAndDisplayFromFile(Student* students, int n, const std::string& filename) {
+void loadAndDisplayFromFile(const std::string& filename) {
     std::ifstream inFile(filename);
     if (!inFile) {
         std::cerr << "Error opening file for reading!\n";
         return;
     }
 
-    for (int i = 0; i < n; ++i) {
-        Student temp;
-        if (!(inFile >> temp.id)) break;
+    Student temp;
+    // Loops automatically and stops once it reaches the end of the file
+    while (inFile >> temp.id) {
         inFile.ignore(); // Clear newline
 
         std::getline(inFile, temp.name);
         inFile >> temp.marks[0] >> temp.marks[1] >> temp.marks[2];
         inFile >> temp.total;
         inFile >> temp.average;
+        inFile.ignore(); // Added this line here to clear the newline after the average so that the next iteration can read the next ID correctly
 
         std::cout << "ID: " << temp.id << ", Name: " << temp.name << "\n";
         std::cout << "Marks: " << temp.marks[0] << " " << temp.marks[1] << " " << temp.marks[2] << "\n";

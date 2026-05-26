@@ -12,7 +12,7 @@ int main() {
         if (n <= 0 || n > 500) {
             std::cout << "Invalid number! Please enter a number between 1 and 500.\n";
         }
-    } while (n <= 0 || n > 500); // Loops if input in too small or is larger than the 500 student limit
+    } while (n <= 0 || n > 500); // Loops if input is too small or is larger than the 500 student limit
 
     // Create an array to hold the student data
     Student* studentArray =  new Student[n]; 
@@ -34,7 +34,8 @@ int main() {
 
     // Load the saved records back and display them
     std::cout << "\nLoading data from file:\n";
-    loadAndDisplayFromFile(studentArray, n, filename);
+    // Now calls the cleaner function using only the file name as a parameter, no need to pass the array and size anymore
+    loadAndDisplayFromFile(filename);
 
     //Deallocate dynamic heap memory to prevent memory leaks
     delete[] studentArray;

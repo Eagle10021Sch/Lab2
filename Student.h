@@ -18,6 +18,8 @@ void calculateGrades(Student* students, int n);
 void displayStudents(const Student* students, int n);
 void findHighestScorer(const Student* students, int n);
 void saveToFile(const Student* students, int n, const std::string& filename);
-void loadAndDisplayFromFile(Student* students, int n, const std::string& filename);
+
+// Changed to read until the file ends, so we don't need a size parameter anymore
+void loadAndDisplayFromFile(const std::string& filename);
 
 #endif
