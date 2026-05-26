@@ -15,7 +15,7 @@ int main() {
     } while (n <= 0); // Loops while input is valid
 
     // Create an array to hold the student data
-    Student studentArray[n]; 
+    Student* studentArray =  new Student[n]; 
 
     // Gather input and process the grades
     inputStudents(studentArray, n);
@@ -35,6 +35,9 @@ int main() {
     // Load the saved records back and display them
     std::cout << "\nLoading data from file:\n";
     loadAndDisplayFromFile(studentArray, n, filename);
+
+    //Deallocate dynamic heap memory to prevent memory leaks
+    delete[] studentArray;
 
     return 0;
 }
