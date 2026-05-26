@@ -6,13 +6,13 @@ int main() {
 
     // Get the total number of students from the user
     do {
-        std::cout << "Enter number of students: ";
+        std::cout << "Enter number of students (Max 500): ";
         std::cin >> n;
         
-        if (n <= 0) {
-            std::cout << "Invalid number! Please try again.\n";
+        if (n <= 0 || n > 500) {
+            std::cout << "Invalid number! Please enter a number between 1 and 500.\n";
         }
-    } while (n <= 0); // Loops while input is valid
+    } while (n <= 0 || n > 500); // Loops if input in too small or is larger than the 500 student limit
 
     // Create an array to hold the student data
     Student* studentArray =  new Student[n]; 
