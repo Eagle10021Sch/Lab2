@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Student.h"
 
+// :: -> Scope resolution operator
 // Loop through and prompt the user for each student's details
 void inputStudents(Student* students, int n) {
     for (int i = 0; i < n; ++i) {

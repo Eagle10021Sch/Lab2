@@ -4,6 +4,7 @@
 int main() {
     int n = 0;
 
+    // :: -> Scope resolution operator
     // Get the total number of students from the user
     do {
         std::cout << "Enter number of students (Max 500): ";
