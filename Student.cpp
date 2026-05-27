@@ -61,11 +61,11 @@ void findHighestScorer(const Student* students, int n) {
               << students[highestIndex].marks[1] << " " 
               << students[highestIndex].marks[2] << "\n";
     std::cout << "Total: " << students[highestIndex].total << ", Average: " << students[highestIndex].average << "\n";
-    std::cout << "Status: " << (students[highestIndex].average >= 50.0f ? "PASS" : "FAIL") << "\n";
+    std::cout << "Status: " << (students[highestIndex].average >= 50.0f ? "PASS" : "FAIL") << "\n"; // : Else
 }
 
 // Write the current student data records out to a text file
-void saveToFile(const Student* students, int n, const std::string& filename) {
+void saveToFile(const Student* students, int n, const std::string& filename) { // Dynamic array so a pointer to the students struct
     std::ofstream outFile(filename);
     if (!outFile) {
         std::cerr << "Error opening file for writing!\n";
@@ -84,7 +84,7 @@ void saveToFile(const Student* students, int n, const std::string& filename) {
 }
 
 // Open the text file, read the stored contents, and print them out
-void loadAndDisplayFromFile(const std::string& filename) {
+void loadAndDisplayFromFile(const std::string& filename) { // & pass by reference
     std::ifstream inFile(filename);
     if (!inFile) {
         std::cerr << "Error opening file for reading!\n";
@@ -97,7 +97,7 @@ void loadAndDisplayFromFile(const std::string& filename) {
         inFile.ignore(); // Clear newline
 
         std::getline(inFile, temp.name);
-        inFile >> temp.marks[0] >> temp.marks[1] >> temp.marks[2];
+        inFile >> temp.marks[0] >> temp.marks[1] >> temp.marks[2];  // >> extraction operator
         inFile >> temp.total;
         inFile >> temp.average;
         inFile.ignore(); // Added this line here to clear the newline after the average so that the next iteration can read the next ID correctly
