@@ -1,0 +1,4 @@
+ID|Name|Mark1|Mark2|Mark3|Total|Average|Grade|Status
+8293|28s|21|32|99|152|50.6667|D|PASS
+1923|Ars|82|83|84|249|83|A|PASS
+123|Ues|82|100|82|264|88|A|PASS

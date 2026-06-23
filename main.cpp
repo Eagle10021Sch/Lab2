@@ -1,45 +1,66 @@
-#include <iostream>
 #include "Student.h"
+#include <iostream>
+
+// Track file write progress as requested via volatile keyword
+volatile bool fileWriteInProgress = false;
 
 int main() {
-    int n = 0;
-
-    // :: -> Scope resolution operator
-    // Get the total number of students from the user
-    do {
-        std::cout << "Enter number of students (Max 500): ";
-        std::cin >> n;
-        
-        if (n <= 0 || n > 500) {
-            std::cout << "Invalid number! Please enter a number between 1 and 500.\n";
-        }
-    } while (n <= 0 || n > 500); // Loops if input is too small or is larger than the 500 student limit
-
-    // Create an array to hold the student data
-    Student* studentArray =  new Student[n]; 
-
-    // Gather input and process the grades
-    inputStudents(studentArray, n);
-    calculateGrades(studentArray, n);
+    std::unique_ptr<Student[]> students(nullptr);
+    int count = 0;
     
-    // Display all processed records
-    std::cout << "\n--- Student Records ---\n";
-    displayStudents(studentArray, n);
-
-    // Find and print the student with the highest total marks
-    findHighestScorer(studentArray, n);
-
-    // Save the student records to a text file
-    std::string filename = "students.txt";
-    saveToFile(studentArray, n, filename);
-
-    // Load the saved records back and display them
-    std::cout << "\nLoading data from file:\n";
-    // Now calls the cleaner function using only the file name as a parameter, no need to pass the array and size anymore
-    loadAndDisplayFromFile(filename);
-
-    //Deallocate dynamic heap memory to prevent memory leaks
-    delete[] studentArray;
-
-    return 0;
+    while (true) {
+        std::cout << "\n===== Enhanced Student Management System =====\n";
+        std::cout << "1. Add student records\n";
+        std::cout << "2. Display all students\n";
+        std::cout << "3. Search student by ID\n";
+        std::cout << "4. Edit student record\n";
+        std::cout << "5. Delete student record\n";
+        std::cout << "6. Find highest scoring student\n";
+        std::cout << "7. Display class summary\n";
+        std::cout << "8. Sort students\n";
+        std::cout << "9. Save records to file\n";
+        std::cout << "10. Load records from file\n";
+        std::cout << "11. Exit\n";
+        
+        int choice = getValidatedInt("Enter your choice: ", 1, 11);
+        
+        switch (choice) {
+            case 1:
+                addStudents(students, count);
+                break;
+            case 2:
+                displayStudents(students, count);
+                break;
+            case 3:
+                searchStudentById(students, count);
+                break;
+            case 4:
+                editStudent(students, count);
+                break;
+            case 5:
+                deleteStudent(students, count);
+                break;
+            case 6:
+                findHighestScorer(students, count);
+                break;
+            case 7:
+                displayClassSummary(students, count);
+                break;
+            case 8:
+                sortStudents(students, count);
+                break;
+            case 9:
+                saveToFile(students, count);
+                break;
+            case 10:
+                loadFromFile(students, count);
+                break;
+            case 11:
+                // No raw delete needed, smart pointer handles cleanup. Program exits cleanly.
+                return 0;
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
+                break;
+        }
+    }
 }
