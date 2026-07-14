@@ -288,6 +288,7 @@ void searchStudentById(const std::unique_ptr<Student[]>& students, int count) {
     int id = getValidatedInt("Enter student ID to search: ", 1, std::numeric_limits<int>::max());
     
     // Iterator-based loop requirement for searching
+    // Auto to deduce the iterator type
     auto begin = students.get();
     auto end = students.get() + count;
     auto it = std::find_if(begin, end, [id](const Student& s) { return s.id == id; });
